@@ -10,8 +10,6 @@ import cv2
 load_dotenv()
 
 allowed_origins = os.getenv('ALLOWED_ORIGINS', '').split(',')
-print(f"Allowed origins: {allowed_origins}")  
-
 app = Flask(__name__)
 CORS(app, resources={
     r"/analyze": {
@@ -131,4 +129,5 @@ def analyze():
         return jsonify({"error": str(e)}), 500
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port)
