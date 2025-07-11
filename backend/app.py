@@ -9,9 +9,9 @@ import cv2
 
 load_dotenv()
 
-allowed_origins = os.getenv('ALLOWED_ORIGINS', '').split(',')
+allowed_origin = os.getenv('ALLOWED_ORIGINS')
 app = Flask(__name__)
-CORS(app, origins=["https://posture-detection-mauve.vercel.app"])
+CORS(app, origins=[allowed_origin])
 
 mp_pose = mp.solutions.pose
 pose = mp_pose.Pose(
