@@ -1,11 +1,13 @@
 from flask import Flask, request, jsonify
-import cv2
 import mediapipe as mp
 import numpy as np
 import base64
 from flask_cors import CORS
 import os
+os.environ["OPENCV_VIDEOIO_MSMF_ENABLE_HW_TRANSFORMS"] = "0"
+os.environ["OPENCV_LOG_LEVEL"] = "ERROR"
 from dotenv import load_dotenv
+import cv2
 
 load_dotenv()
 
