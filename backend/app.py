@@ -10,15 +10,16 @@ from dotenv import load_dotenv
 load_dotenv()
 
 allowed_origins = os.getenv('ALLOWED_ORIGINS', '').split(',')
-CORS(app, resources={
-    r"/analyze": {
-        "origins": allowed_origins,
-        "methods": ["POST"],
-        "allow_headers": ["Content-Type"]
-    }
-})
+print(f"Allowed origins: {allowed_origins}")  
 
 app = Flask(__name__)
+CORS(app, resources={
+    r"/analyze": {
+        "origins": allowed_origins if allowed_origins != [''] else ["https://posture-detection-mauve.vercel.app"],
+        "methods": ["POST", "OPTIONS"],  
+        "allow_headers": ["Content-Type", "Authorization"]
+    }
+})
 
 mp_pose = mp.solutions.pose
 pose = mp_pose.Pose(
