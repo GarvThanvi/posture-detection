@@ -31,7 +31,7 @@ function PostureDetector() {
       const response = await axios.post(`${backendUrl}/analyze`, {
         image: imageSrc,
       });
-
+      console.log(response);
       // Ensuring feedback is an array
       const feedbackData = Array.isArray(response.data.feedback)
         ? response.data.feedback

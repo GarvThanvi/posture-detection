@@ -4,7 +4,7 @@ FROM python:3.11-slim
 # Set working directory
 WORKDIR /app
 
-# Install system dependencies for opencv-python-headless and mediapipe
+# Install system dependencies for mediapipe and opencv-python-headless
 RUN apt-get update && apt-get install -y \
     libglib2.0-0 \
     libsm6 \
@@ -15,10 +15,9 @@ RUN apt-get update && apt-get install -y \
 # Copy requirements.txt
 COPY requirements.txt .
 
-# Install opencv-python-headless first to ensure mediapipe uses it
+# Install opencv-python-headless first and ensure opencv-python is not installed
 RUN pip install --no-cache-dir opencv-python-headless==4.10.0.84
-
-# Install remaining dependencies
+RUN pip uninstall opencv-python -y || true
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the application code
