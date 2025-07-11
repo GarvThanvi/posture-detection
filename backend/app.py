@@ -4,6 +4,19 @@ import mediapipe as mp
 import numpy as np
 import base64
 from flask_cors import CORS
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+allowed_origins = os.getenv('ALLOWED_ORIGINS', '').split(',')
+CORS(app, resources={
+    r"/analyze": {
+        "origins": allowed_origins,
+        "methods": ["POST"],
+        "allow_headers": ["Content-Type"]
+    }
+})
 
 app = Flask(__name__)
 CORS(app)
