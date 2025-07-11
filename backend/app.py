@@ -11,13 +11,7 @@ load_dotenv()
 
 allowed_origins = os.getenv('ALLOWED_ORIGINS', '').split(',')
 app = Flask(__name__)
-CORS(app, resources={
-    r"/analyze": {
-        "origins": allowed_origins if allowed_origins != [''] else ["https://posture-detection-mauve.vercel.app"],
-        "methods": ["POST", "OPTIONS"],  
-        "allow_headers": ["Content-Type", "Authorization"]
-    }
-})
+CORS(app, origins=["https://posture-detection-mauve.vercel.app"])
 
 mp_pose = mp.solutions.pose
 pose = mp_pose.Pose(
@@ -127,6 +121,10 @@ def analyze():
         return jsonify(result)
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+
+@app.route('/')
+def home():
+    return "Posture Detection API is running"
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
