@@ -19,7 +19,6 @@ CORS(app, resources={
 })
 
 app = Flask(__name__)
-CORS(app)
 
 mp_pose = mp.solutions.pose
 pose = mp_pose.Pose(
