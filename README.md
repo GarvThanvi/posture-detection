@@ -68,4 +68,4 @@ Click "Start Detection" to begin posture analysis.
 https://posture-detection-mauve.vercel.app
 
 🎥 Demo Video
-https://drive.google.com/file/d/1vatwjKLfYM485dzqiLsPAXox4vof796F/view?usp=sharing
+https://drive.google.com/file/d/1uwyDtx-xmOTFXIKPTMgXtv83HVegetAu/view?usp=sharing
