@@ -3,6 +3,7 @@ import Webcam from "react-webcam";
 import axios from "axios";
 import { motion } from "framer-motion";
 
+
 const backendUrl = process.env.REACT_APP_BASE_URL;
 
 function PostureDetector() {
